@@ -84,7 +84,7 @@ keys = [
         lazy.spawn("exec dmenu_run "
             "-fn 'Consolas:size=13' -nb '#000000' -nf '#ffffff' -b")),
 
-    Key([mod], "F5",
+    Key([], "F5",
           lazy.spawn(Commands.yoga_rotate)),
     Key([], "XF86MonBrightnessDown",
          lazy.spawn("xbacklight -dec 5")),
