@@ -25,7 +25,7 @@ function plus() {
         VOL_NEW=$((VOL_MAX))
     fi
     pactl set-sink-volume $SINK_NAME `printf "0x%X" $VOL_NEW`
-    pactl play-sample 0 $SINK_NAME
+    #pactl play-sample 0 $SINK_NAME
 }
 
 function minus() {
@@ -34,7 +34,7 @@ function minus() {
         VOL_NEW=$((0x00000))
     fi
     pactl set-sink-volume $SINK_NAME `printf "0x%X" $VOL_NEW`
-    pactl play-sample 0 $SINK_NAME
+    #pactl play-sample 0 $SINK_NAME
 }
 
 
