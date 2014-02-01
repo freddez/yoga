@@ -11,7 +11,9 @@ UUID=a00efcce-13d8-48fb-a80c-bfe582ccbb89 /               ext4    noatime,errors
 UUID=FA9C-0026  /boot/efi       vfat    defaults        0       1
 # swap was on /dev/sda8 during installation
 UUID=f7977d9b-fb77-4b80-81d8-3e7b204368d7 none            swap    sw              0       0
-tmpfs      /tmp            tmpfs        defaults,size=1g           0    0
-tmpfs /var/log tmpfs defaults,nosuid,nodev,noatime,mode=0755,size=5% 0 0
-tmpfs    /var/cache/apt/archives    tmpfs    defaults,size=4g    0    0
+
+# Mount these directories in ram for SSD preservation
+tmpfs	/tmp			tmpfs	defaults,size=1g 0 0
+tmpfs	/var/log 		tmpfs	defaults,nosuid,nodev,noatime,mode=0755,size=5% 0 0
+tmpfs	/var/cache/apt/archives	tmpfs	defaults,size=4g 0 0
 
