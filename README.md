@@ -1,7 +1,7 @@
 yoga
 ====
 
-Yoga 2 Pro Ubuntu Linux configuration, with qtile window manager
+Lenovo Yoga 2 Pro Ubuntu Linux configuration, with qtile window manager
 
 
 Firefox
@@ -25,3 +25,7 @@ browser.cache.memory_limit	-1
 - "FxKeyboard" : virtual keyboard
 
 I use tablet mode with "yoga.rotate.sh" script in this repository.
+
+### Graphic acceleration ###
+
+Installed last drivers from https://01.org/linuxgraphics/downloads, glmark2 Score before: 1139, after: 1215.
