@@ -93,12 +93,11 @@ keys = [
 
     Key([], "XF86AudioRaiseVolume", lazy.spawn(Commands.volume % '5dB+')),
     Key([], "XF86AudioLowerVolume", lazy.spawn(Commands.volume % '5dB-')),
-    #Key([], "XF86AudioMute", lazy.spawn(Commands.volume % 'toggle')),
+    # Already active
+    # Key([], "XF86AudioMute", lazy.spawn(Commands.volume % 'toggle')),
 
-    Key([mod], "Left",
-        lazy.prevgroup()),
-    Key([mod], "Right",
-        lazy.nextgroup()),
+    Key([mod], "Left", lazy.prevgroup()),
+    Key([mod], "Right", lazy.nextgroup()),
 ]
 
 mouse = [
@@ -144,7 +143,6 @@ groups = [
     Group('6', layout='max'),
     Group('7', layout='max'),
     Group('8', layout='max'),
-    #Group('9', layout='floating')
 ]
 
 for name,key in GROUPS:
@@ -172,7 +170,7 @@ if HOSTNAME.startswith('yoga'):
                 [
                     widget.GroupBox(margin_x=1, margin_y=0,fontsize=21, disable_drag=True),
                     widget.Sep(),
-                    widget.WindowName(fontsize=32), #font='Consolas',fontsize=18, margin_x=6),
+                    widget.WindowName(fontsize=32),
                     widget.Sep(),
                     widget.BatteryIcon(battery_name="BAT1",theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.Battery(battery_name="BAT1", format="{percent:2.0%}"),
@@ -182,9 +180,10 @@ if HOSTNAME.startswith('yoga'):
                     widget.MemoryGraph(theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.SwapGraph(foreground='C02020'),
                     widget.Sep(),
+                    widget.NetGraph(interface='wlan0', theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.Sep(),
                     widget.Notify(),
-                    widget.Clock('%d/%m %H:%M', fontsize=34) #, font='Consolas', fontsize=18, padding=6),
+                    widget.Clock('%d/%m %H:%M', fontsize=34)
                 ],
                 42,
             ),
@@ -196,15 +195,13 @@ else:
                 [
                     widget.GroupBox(margin_x=1, margin_y=0,fontsize=8, disable_drag=True),
                     widget.Sep(),
-                    widget.WindowName(fontsize=16), #font='Consolas',fontsize=18, margin_x=6),
+                    widget.WindowName(fontsize=16),
                     widget.Sep(),
                     widget.Notify(),
-                    widget.Sep(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
-                    widget.SwapGraph(foreground='C02020'),
                     widget.Sep(),
-                    widget.Clock('%d/%m %H:%M', fontsize=17) #, font='Consolas', fontsize=18, padding=6),
+                    widget.Clock('%d/%m %H:%M', fontsize=17)
                 ],
                 21,
             ),

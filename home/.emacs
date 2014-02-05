@@ -345,7 +345,9 @@ it)"
   (desktop-save-mode 1)
 )
 
-
+(when (string-match system-name "pimentech.net")
+  (set-face-attribute 'default nil :font "-unknown-Droid Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+  )
 
 (cond (emacs-linux
        (menu-bar-mode 0)
