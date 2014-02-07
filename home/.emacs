@@ -19,7 +19,7 @@
       ("marmalade" . "http://marmalade-repo.org/packages/")
       ("melpa" . "http://melpa.milkbox.net/packages/")))
       ;(load-theme 'zenburn t)
-      (load-theme 'ample-zen t)
+      ;(load-theme 'ample-zen t)
       )
      )
 
@@ -280,9 +280,9 @@ it)"
 
 (setq kjfletch-font-list
       '(;; List of fonts to search for in order of priority.
-        "Droid Sans Mono-12" "Ubuntu Mono-18" "Source Code Pro Regular"  "Consolas-10" "ProggyOpti-8"
-        "ProggyOptiS-8" "ProggyClean-10" "Consolas-8"
-        "DejaVu Sans Mono-20" "Courier New-8"
+	"Droid Sans Mono-14" "Ubuntu Mono-18" "Source Code Pro Regular"  "Consolas-10" "ProggyOpti-8"
+	"ProggyOptiS-8" "ProggyClean-10" "Consolas-8"
+	"DejaVu Sans Mono-20" "Courier New-8"
  ))
 (let* ((in-loop t)
        (font (car kjfletch-font-list))
@@ -341,7 +341,7 @@ it)"
        (toggle-frame-fullscreen)
 ))
 (when (string= system-name "yoga")
-  ;(set-face-attribute 'default nil :font "-unknown-Monospace-normal-normal-normal-*-29-*-*-*-m-0-iso10646-1")
+  (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
   (desktop-save-mode 1)
 )
 
@@ -373,10 +373,8 @@ it)"
 
 
        (quick-perspective-keys)
-       ;(persp-switch "carnet")
-       ;(persp-switch "v5")
        (persp-switch "indicateur")
-       (persp-switch "trunk")
+       (persp-switch "notesgroup")
        (persp-switch "samusocial")
        (persp-switch "main")
 
@@ -461,7 +459,7 @@ it)"
      :foreground "LightBlue" :weight 'bold)
 
      (setq web-mode-code-indent-offset 2
-        web-mode-tag-auto-close-style 2)
+	web-mode-tag-auto-close-style 2)
      (local-set-key "\C-c\C-g" 'django-insert-trans)
      (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
      (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)

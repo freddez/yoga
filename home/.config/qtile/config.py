@@ -176,7 +176,7 @@ if HOSTNAME.startswith('yoga'):
                     widget.Sep(),
                     widget.BatteryIcon(battery_name="BAT1",theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.Battery(battery_name="BAT1", format="{percent:2.0%}"),
-                    #widget.Volume(cardid=1,theme_path="/usr/share/icons/gnome/32x32/status"),
+                    widget.Volume(cardid=1,theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.Sep(),
                     widget.CPUGraph(theme_path="/usr/share/icons/gnome/32x32/status"),
                     widget.MemoryGraph(theme_path="/usr/share/icons/gnome/32x32/status"),
