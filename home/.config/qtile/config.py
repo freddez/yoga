@@ -29,11 +29,15 @@ def startup():
     lazy.spawn("xbacklight -set 10")
     lazy.spawn("pkill -9 emacs")
     execute_once("gnome-settings-daemon")
+    execute_once("nm-applet")
 
 
 class Commands(object):
     volume = 'amixer -q sset Master %s && aplay -d default /usr/share/sounds/sound-icons/glass-water-1.wav'
     yoga_rotate = "yoga.rotate.sh"
+    # Added pm-suspend in /etc/sudoers
+    # https://wiki.archlinux.org/index.php/pm-utils#User_permission_method
+    suspend = "sudo pm-suspend"
 
 keys = [
     Key([mod], "Down",
@@ -91,6 +95,7 @@ keys = [
 if HOSTNAME.startswith('yoga'):
     keys += [
         Key([], "F5", lazy.spawn(Commands.yoga_rotate)),
+        Key([mod], "s", lazy.spawn(Commands.suspend)),
         Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
         Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
         Key([], "XF86AudioRaiseVolume", lazy.spawn(Commands.volume % '5dB+')),
@@ -180,7 +185,11 @@ if HOSTNAME.startswith('yoga'):
                     widget.Battery(battery_name="BAT1",
                                    format="{percent:2.0%}"),
                     widget.Volume(cardid=1, theme_path=THEME_PATH),
+
                     widget.Sep(),
+                    widget.Systray(),
+                    widget.Sep(),
+
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
                     widget.SwapGraph(foreground='C02020'),
