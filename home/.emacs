@@ -4,24 +4,63 @@
 ;current buffer path in window title invocation-name
 
 
+(defvar emacs-linux (string-match "linux" system-configuration))
 
 (cond
-     ((string-match "Emacs 23" (emacs-version))
-      (require 'color-theme)
-      (load "~/.emacs.d/zenburn")
-      (color-theme-zenburn)
-      )
-     ((string-match "Emacs 24" (emacs-version))
-      (require 'package)
-      (package-initialize)
-      (setq package-archives
+ ((string-match "Emacs 23" (emacs-version))
+  (require 'color-theme)
+  (load "~/.emacs.d/zenburn")
+  (color-theme-zenburn)
+  )
+
+ ((string-match "Emacs 24" (emacs-version))
+  (require 'package)
+  (package-initialize)
+  (setq package-archives
 	'(("gnu" . "http://elpa.gnu.org/packages/")
       ("marmalade" . "http://marmalade-repo.org/packages/")
       ("melpa" . "http://melpa.milkbox.net/packages/")))
-      ;(load-theme 'zenburn t)
-      ;(load-theme 'ample-zen t)
-      )
-     )
+					;(load-theme 'zenburn t)
+  )
+)
+(cond
+ ((string-match "darwin" system-configuration)
+  (setenv "PATH" "/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin/:/Volumes/home/fredz/bin:.:/Volumes/home/fredz/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin")
+  (desktop-save-mode 1)
+  (setq mac-option-modifier nil
+	mac-command-modifier 'meta
+	x-select-enable-clipboard t)
+  (set-face-attribute 'default nil :font "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+  (setq initial-frame-alist default-frame-alist)
+  (toggle-frame-fullscreen)
+  )
+ ((string= system-name "yoga")
+  (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
+  (desktop-save-mode 1)
+  )
+
+ ((string-match "pimentech.net" system-name)
+  (set-face-attribute 'default nil :font "-unknown-Droid Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+  (load-theme 'ample-zen t)
+
+  (menu-bar-mode 0)
+  (persp-mode)
+  (quick-perspective-keys)
+  (persp-switch "indicateur")
+  (persp-switch "notesgroup")
+  (persp-switch "samusocial")
+  (persp-switch "main")  )
+
+ )
+
+(setq frame-title-format
+      '("" (:eval (persp-name persp-curr)) ": "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+
+
 
 (outline-minor-mode 1)
 (eval-after-load 'outline
@@ -278,21 +317,21 @@ it)"
        (x-list-fonts font)))
 
 
-(setq kjfletch-font-list
-      '(;; List of fonts to search for in order of priority.
-	"Droid Sans Mono-14" "Ubuntu Mono-18" "Source Code Pro Regular"  "Consolas-10" "ProggyOpti-8"
-	"ProggyOptiS-8" "ProggyClean-10" "Consolas-8"
-	"DejaVu Sans Mono-20" "Courier New-8"
- ))
-(let* ((in-loop t)
-       (font (car kjfletch-font-list))
-       (rest (cdr kjfletch-font-list)))
-  (while (and font in-loop)
-    (when (font-existsp font)
-      (set-face-attribute 'default nil :font font)
-      (setq in-loop nil))
-    (setq font (car rest)
-      rest (cdr rest))))
+;; (setq kjfletch-font-list
+;;       '(;; List of fonts to search for in order of priority.
+;;  "Droid Sans Mono-14" "Ubuntu Mono-18" "Source Code Pro Regular"  "Consolas-10" "ProggyOpti-8"
+;;  "ProggyOptiS-8" "ProggyClean-10" "Consolas-8"
+;;  "DejaVu Sans Mono-20" "Courier New-8"
+;;  ))
+;; (let* ((in-loop t)
+;;        (font (car kjfletch-font-list))
+;;        (rest (cdr kjfletch-font-list)))
+;;   (while (and font in-loop)
+;;     (when (font-existsp font)
+;;       (set-face-attribute 'default nil :font font)
+;;       (setq in-loop nil))
+;;     (setq font (car rest)
+;;       rest (cdr rest))))
 
 (put 'narrow-to-region 'disabled nil)
 
@@ -325,66 +364,6 @@ it)"
 (require 'ido)
 (ido-mode t)
 
-
-(defvar emacs-darwin (string-match "darwin" system-configuration))
-(defvar emacs-linux (string-match "linux" system-configuration))
-
-
-(cond (emacs-darwin
-       (setenv "PATH" "/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin/:/Volumes/home/fredz/bin:.:/Volumes/home/fredz/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin")
-       (desktop-save-mode 1)
-       (setq mac-option-modifier nil
-     mac-command-modifier 'meta
-     x-select-enable-clipboard t)
-       (set-face-attribute 'default nil :font "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-       (setq initial-frame-alist default-frame-alist)
-       (toggle-frame-fullscreen)
-))
-(when (string= system-name "yoga")
-  (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
-  (desktop-save-mode 1)
-)
-
-(when (string-match system-name "pimentech.net")
-  (set-face-attribute 'default nil :font "-unknown-Droid Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
-  )
-
-(cond (emacs-linux
-       (menu-bar-mode 0)
-       (persp-mode)
-
-
-     ;;   (defmacro custom-persp (name &rest body)
-     ;; `(let ((initialize (not (gethash ,name perspectives-hash)))
-     ;;    (current-perspective persp-curr))
-     ;;    (persp-switch ,name)
-     ;;    (when initialize ,@body)
-     ;;    (setq persp-last current-perspective)))
-
-
-     ;;   (defun custom-persp/indicateur ()
-     ;; (interactive)
-     ;; (custom-persp "@indicateur"
-     ;;           (add-hook 'web-mode-hook
-     ;;          '(lambda ()
-     ;;             (setq web-mode-code-indent-offset 4
-     ;;               web-mode-tag-auto-close-style 2)))
-     ;;           )
-
-     ;; )
-
-
-       (quick-perspective-keys)
-       (persp-switch "indicateur")
-       (persp-switch "notesgroup")
-       (persp-switch "samusocial")
-       (persp-switch "main")
-
-       (setq frame-title-format
-     '("" (:eval (persp-name persp-curr)) ": "(:eval (if (buffer-file-name)
-     (abbreviate-file-name (buffer-file-name))
-       "%b"))))
-))
 
 
 ;; CTRL-ALT Y : Duplique la ligne
