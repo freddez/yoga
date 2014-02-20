@@ -37,6 +37,7 @@
  ((string= system-name "yoga")
   (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
   (desktop-save-mode 1)
+  (load-theme 'tango-plus t)
   )
 
  ((string-match "pimentech.net" system-name)
@@ -622,6 +623,7 @@ it)"
  '(global-font-lock-mode t nil (font-lock))
  '(gnus-nntp-server "news.free.fr")
  '(grep-find-command "find . -type f -not -name \"*.svn-base\" -and -not -name \"*~\" -and \\( -name \"*.html\" -or -name \"*.php*\" -or -name \"*.py\" -or -name \"*.sql\" -or -name \"*.js\" -or -name \"*.css\" -or -name \"*.sh\"  -or -name \"*.conf\" -or -name \"*.tex\" -or -name \"Makefile\" \\) -print0 | xargs -0 -e grep -n -s -F ")
+ '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
  '(gud-pdb-command-name "pdb.py")
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
