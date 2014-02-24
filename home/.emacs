@@ -37,6 +37,7 @@
  ((string= system-name "yoga")
   (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
   (desktop-save-mode 1)
+  (menu-bar-mode 0)
   )
 
  ((string-match "pimentech.net" system-name)
