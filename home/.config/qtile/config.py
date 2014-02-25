@@ -26,8 +26,8 @@ def execute_once(process):
 
 @hook.subscribe.startup
 def startup():
-    lazy.spawn("xbacklight -set 10")
-    lazy.spawn("pkill -9 emacs")
+    execute_once("xbacklight -set 10")
+    execute_once("pkill -9 emacs")
     execute_once("gnome-settings-daemon")
     execute_once("nm-applet")
 
