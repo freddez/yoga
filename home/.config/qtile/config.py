@@ -24,12 +24,12 @@ def execute_once(process):
         return subprocess.Popen(process.split())
 
 
-@hook.subscribe.startup
-def startup():
-    lazy.spawn("xbacklight -set 10")
-    lazy.spawn("pkill -9 emacs")
-    execute_once("gnome-settings-daemon")
-    execute_once("nm-applet")
+# @hook.subscribe.startup
+# def startup():
+#     lazy.spawn("xbacklight -set 10")
+#     lazy.spawn("pkill -9 emacs")
+#     execute_once("gnome-settings-daemon")
+#     execute_once("nm-applet")
 
 
 class Commands(object):
@@ -212,7 +212,7 @@ else:
                     widget.Sep(),
                     widget.WindowName(fontsize=16),
                     widget.Sep(),
-                    widget.Notify(),
+                    #widget.Notify(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
                     widget.Sep(),
