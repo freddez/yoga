@@ -1,9 +1,9 @@
 # interfaces(5) file used by ifup(8) and ifdown(8)
 auto lo
 iface lo inet loopback
-auto wlan0
-iface wlan0 inet dhcp
-   	wpa-conf /etc/wpa_supplicant.conf
-	ipre-up wpa_supplicant -B -Dwext -iwlan0 -c/etc/wpa_supplicant.conf
-	post-down killall -q wpa_supplicant
+# auto wlan0
+# iface wlan0 inet dhcp
+#       wpa-conf /etc/wpa_supplicant.conf
+#   ipre-up wpa_supplicant -B -Dwext -iwlan0 -c/etc/wpa_supplicant.conf
+#   post-down killall -q wpa_supplicant
 
