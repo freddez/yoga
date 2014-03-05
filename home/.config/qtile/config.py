@@ -24,21 +24,13 @@ def execute_once(process):
         return subprocess.Popen(process.split())
 
 
-<<<<<<< HEAD
-# @hook.subscribe.startup
-# def startup():
-#     lazy.spawn("xbacklight -set 10")
-#     lazy.spawn("pkill -9 emacs")
-#     execute_once("gnome-settings-daemon")
-#     execute_once("nm-applet")
-=======
-@hook.subscribe.startup
-def startup():
-    execute_once("xbacklight -set 10")
-    execute_once("pkill -9 emacs")
-    execute_once("gnome-settings-daemon")
-    execute_once("nm-applet")
->>>>>>> 280fff2ab71afa8192c3afc72d6ffdc2730204ed
+if HOSTNAME.startswith('yoga'):
+    @hook.subscribe.startup
+    def startup():
+        execute_once("xbacklight -set 10")
+        execute_once("pkill -9 emacs")
+        execute_once("gnome-settings-daemon")
+        execute_once("nm-applet")
 
 
 class Commands(object):
@@ -125,7 +117,7 @@ mouse = [
 
 border = dict(
     border_normal='#808080',
-    border_width=2,
+    border_width=1,
 )
 
 layouts = [
