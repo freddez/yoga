@@ -59,8 +59,8 @@
 (setq frame-title-format
       '("" (:eval (persp-name persp-curr)) ": "
 	(:eval (if (buffer-file-name)
-	   (abbreviate-file-name (buffer-file-name))
-	 "%b"))))
+       (abbreviate-file-name (buffer-file-name))
+     "%b"))))
 
 
 
@@ -438,18 +438,25 @@ it)"
 
 
 (add-hook 'web-mode-hook
-      '(lambda ()
-     (set-face-attribute 'web-mode-html-tag-face nil
-     :foreground "LightBlue" :weight 'bold)
+          '(lambda ()
+             (set-face-attribute 'web-mode-html-tag-face nil
+                                 :foreground "LightBlue" :weight 'bold)
 
-     (setq web-mode-code-indent-offset 2
-	web-mode-tag-auto-close-style 2)
-     (local-set-key "\C-c\C-g" 'django-insert-trans)
-     (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
-     (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
-     (local-set-key (kbd "C-c <down>") 'web-mode-element-end)
-     (local-set-key (kbd "C-c <up>") 'web-mode-element-beginning)
-     ))
+             (setq web-mode-code-indent-offset 2
+                   web-mode-markup-indent-offset 2
+                   web-mode-tag-auto-close-style 2
+                   web-mode-void-elements
+                   '("area" "base" "br" "col" "command" "embed" "hr" "img" "input" "keygen"
+                     "link" "meta" "param" "source" "track" "wbr" "dtml-var" "dtml-else"
+                     "dtml-call" "dtml-with" "dtml-let")
+                   )
+             (local-set-key "\C-c\C-g" 'django-insert-trans)
+             (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
+             (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
+             (local-set-key (kbd "C-c <down>") 'web-mode-element-end)
+             (local-set-key (kbd "C-c <up>") 'web-mode-element-beginning)
+             )
+          )
 ;(set-face-attribute 'web-mode-html-tag-face nil :inherit font-lock-keyword-face)
 
 
@@ -524,6 +531,7 @@ it)"
 ;(add-to-list 'auto-mode-alist '("\\.[sx]?html?\\'" . django-html-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.dtml?\\'" . web-mode))
 (setq web-mode-engines-alist '(("django" . "\\.html\\'") ("blade" . "\\.blade\\.")) )
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
@@ -664,9 +672,6 @@ it)"
  '(tramp-default-method "ssh")
  '(user-full-name "Frederic de Zorzi")
  '(user-mail-address "fredz@pimentech.fr")
- '(web-mode-code-indent-offset 2)
- '(web-mode-markup-indent-offset 4)
- '(web-mode-tag-auto-close-style 2)
  '(whitespace-style (quote (tabs trailing space-before-tab space-after-tab tab-mark))))
 
 
