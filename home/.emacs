@@ -441,7 +441,7 @@ it)"
           '(lambda ()
              (set-face-attribute 'web-mode-html-tag-face nil
                                  :foreground "LightBlue" :weight 'bold)
-
+             (setq web-mode-markup-indent-offset 4)
              (setq web-mode-code-indent-offset 2
                    web-mode-markup-indent-offset 2
                    web-mode-tag-auto-close-style 2
@@ -450,6 +450,7 @@ it)"
                      "link" "meta" "param" "source" "track" "wbr" "dtml-var" "dtml-else"
                      "dtml-call" "dtml-with" "dtml-let")
                    )
+
              (local-set-key "\C-c\C-g" 'django-insert-trans)
              (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
              (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
