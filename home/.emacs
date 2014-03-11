@@ -441,7 +441,7 @@ it)"
           '(lambda ()
              (set-face-attribute 'web-mode-html-tag-face nil
                                  :foreground "LightBlue" :weight 'bold)
-
+             (setq web-mode-markup-indent-offset 4)
              (setq web-mode-code-indent-offset 2
                    web-mode-markup-indent-offset 2
                    web-mode-tag-auto-close-style 2
@@ -450,6 +450,7 @@ it)"
                      "link" "meta" "param" "source" "track" "wbr" "dtml-var" "dtml-else"
                      "dtml-call" "dtml-with" "dtml-let")
                    )
+
              (local-set-key "\C-c\C-g" 'django-insert-trans)
              (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
              (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
@@ -630,12 +631,12 @@ it)"
  '(custom-safe-themes
    (
     quote (
-	   "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83"
-	   "1f70ca6096c886ca2a587bc10e2e8299ab835a1b95394a5f4e4d41bb76359633"
-	   "7df5b36ef661649550614a15e9afb9d3e785706be6a577058f1b440dff1b03e3"
-	   "a3d519ee30c0aa4b45a277ae41c4fa1ae80e52f04098a2654979b1ab859ab0bf"
-	   "9cdf9fb94f560902b567b73f65c2ed4e5cfbaafe"
-	   default)))
+       "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83"
+       "1f70ca6096c886ca2a587bc10e2e8299ab835a1b95394a5f4e4d41bb76359633"
+       "7df5b36ef661649550614a15e9afb9d3e785706be6a577058f1b440dff1b03e3"
+       "a3d519ee30c0aa4b45a277ae41c4fa1ae80e52f04098a2654979b1ab859ab0bf"
+       "9cdf9fb94f560902b567b73f65c2ed4e5cfbaafe"
+       default)))
  '(default-input-method "rfc1345")
  '(file-coding-system-alist (quote (("\\.dz\\'" no-conversion . no-conversion) ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.tgz\\'" no-conversion . no-conversion) ("\\.tbz\\'" no-conversion . no-conversion) ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.elc\\'" emacs-mule . emacs-mule) ("\\.utf\\(-8\\)?\\'" . utf-8) ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix) ("\\.tar\\'" no-conversion . no-conversion) ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system) ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system) ("" undecided) ("" undecided . undecided) (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
  '(flymake-allowed-file-name-masks (quote (("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.idl\\'" flymake-simple-make-init) ("\\.py\\'" flymake-pyflakes-init))))
