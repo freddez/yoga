@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/")
+;(add-to-list 'load-path "~/.emacs.d/")
 (global-auto-revert-mode t) ;; raffraîchit les buffers en cas de svn up
 
 ;current buffer path in window title invocation-name
