@@ -235,25 +235,6 @@
 
 
 (require 'printing)		; load printing package
-;; (setq pr-path-alist
-;;      '((unix      "." "~/bin" ghostview mpage PATH)
-;;        (ghostview "$HOME/bin/gsview-dir")
-;;        (mpage     "$HOME/bin/mpage-dir")
-;;        ))
-;;    (setq pr-txt-name      'prt_06a)
-;;    (setq pr-txt-printer-alist
-;;          '((prt_06a "lpr" nil "prt_06a")
-;;            (prt_07c nil   nil "prt_07c")
-;;            ))
-;;    (setq pr-ps-name       'lps_06b)
-;;    (setq pr-ps-printer-alist
-;;          '((lps_06b "lpr" nil "-P" "lps_06b")
-;;            (lps_07c "lpr" nil nil  "lps_07c")
-;;            (lps_08c nil   nil nil  "lps_08c")
-;;            ))
-;;    (pr-update-menus t)		; update now printer and utility menus
-
-
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
