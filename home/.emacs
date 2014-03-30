@@ -17,10 +17,10 @@
   (require 'package)
   (package-initialize)
   (setq package-archives
-	'(("gnu" . "http://elpa.gnu.org/packages/")
-      ("marmalade" . "http://marmalade-repo.org/packages/")
-      ("melpa" . "http://melpa.milkbox.net/packages/")))
-					;(load-theme 'zenburn t)
+        '(
+          ("gnu" . "http://elpa.gnu.org/packages/")
+          ("marmalade" . "http://marmalade-repo.org/packages/")
+          ("melpa" . "http://melpa.milkbox.net/packages/")))
   )
 )
 (cond
@@ -38,7 +38,7 @@
   (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
   (desktop-save-mode 1)
   (menu-bar-mode 0)
-  (load-theme 'obsidian t)
+  ; (load-theme 'obsidian t)
   ; (load-theme 'tango-plus t)
   )
 
@@ -628,23 +628,44 @@ it)"
  '(column-number-mode t)
  '(csv-separators (quote ("|")))
  '(current-language-environment "utf-8")
+ '(custom-enabled-themes (quote (sanityinc-solarized-light)))
  '(custom-safe-themes
-   (
-    quote (
-       "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83"
-       "1f70ca6096c886ca2a587bc10e2e8299ab835a1b95394a5f4e4d41bb76359633"
-       "7df5b36ef661649550614a15e9afb9d3e785706be6a577058f1b440dff1b03e3"
-       "a3d519ee30c0aa4b45a277ae41c4fa1ae80e52f04098a2654979b1ab859ab0bf"
-       "9cdf9fb94f560902b567b73f65c2ed4e5cfbaafe"
-       default)))
+   (quote
+    ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
  '(default-input-method "rfc1345")
- '(file-coding-system-alist (quote (("\\.dz\\'" no-conversion . no-conversion) ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.tgz\\'" no-conversion . no-conversion) ("\\.tbz\\'" no-conversion . no-conversion) ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.elc\\'" emacs-mule . emacs-mule) ("\\.utf\\(-8\\)?\\'" . utf-8) ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix) ("\\.tar\\'" no-conversion . no-conversion) ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system) ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system) ("" undecided) ("" undecided . undecided) (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
- '(flymake-allowed-file-name-masks (quote (("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.idl\\'" flymake-simple-make-init) ("\\.py\\'" flymake-pyflakes-init))))
+ '(file-coding-system-alist
+   (quote
+    (("\\.dz\\'" no-conversion . no-conversion)
+     ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
+     ("\\.tgz\\'" no-conversion . no-conversion)
+     ("\\.tbz\\'" no-conversion . no-conversion)
+     ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
+     ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
+     ("\\.elc\\'" emacs-mule . emacs-mule)
+     ("\\.utf\\(-8\\)?\\'" . utf-8)
+     ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix)
+     ("\\.tar\\'" no-conversion . no-conversion)
+     ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system)
+     ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system)
+     ("" undecided)
+     ("" undecided . undecided)
+     (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
+ '(flymake-allowed-file-name-masks
+   (quote
+    (("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init)
+     ("\\.xml\\'" flymake-xml-init)
+     ("\\.cs\\'" flymake-simple-make-init)
+     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+     ("\\.idl\\'" flymake-simple-make-init)
+     ("\\.py\\'" flymake-pyflakes-init))))
  '(fringe-mode (quote (0)) nil (fringe))
  '(global-font-lock-mode t nil (font-lock))
  '(gnus-nntp-server "news.free.fr")
- '(grep-find-command "find . -type f -not -name \"*.svn-base\" -and -not -name \"*~\" -and \\( -name \"*.html\" -or -name \"*.php*\" -or -name \"*.py\" -or -name \"*.sql\" -or -name \"*.js\" -or -name \"*.css\" -or -name \"*.sh\"  -or -name \"*.conf\" -or -name \"*.tex\" -or -name \"Makefile\" \\) -print0 | xargs -0 -e grep -n -s -F ")
- '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
+ '(grep-find-command
+   "find . -type f -not -name \"*.svn-base\" -and -not -name \"*~\" -and \\( -name \"*.html\" -or -name \"*.php*\" -or -name \"*.py\" -or -name \"*.sql\" -or -name \"*.js\" -or -name \"*.css\" -or -name \"*.sh\"  -or -name \"*.conf\" -or -name \"*.tex\" -or -name \"Makefile\" \\) -print0 | xargs -0 -e grep -n -s -F ")
+ '(grep-find-ignored-directories
+   (quote
+    ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
  '(gud-pdb-command-name "pdb.py")
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
@@ -654,7 +675,12 @@ it)"
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-child-indent 3)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
- '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . emacs) ("\\.pdf\\'" . default))))
+ '(org-file-apps
+   (quote
+    ((auto-mode . emacs)
+     ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . emacs)
+     ("\\.pdf\\'" . default))))
  '(org-todo-keywords (quote ((sequence "TODO" "TOCHECK" "|" "DONE"))))
  '(outline-cycle-emulate-tab t)
  '(pop-up-windows nil)
@@ -670,9 +696,20 @@ it)"
  '(setq require-final-newline t)
  '(speedbar-after-create-hook (quote (speedbar-frame-reposition-smartly)))
  '(speedbar-directory-unshown-regexp "^\\(CVS\\|RCS\\|SCCS\\|\\.[a-zA-Z1-9._-]*\\)\\'")
- '(speedbar-frame-parameters (quote ((minibuffer) (width . 20) (border-width . 0) (menu-bar-lines . 0) (tool-bar-lines . 0) (unsplittable . t) (left-fringe . 0) (scroll-bar-mode . -1))))
+ '(speedbar-frame-parameters
+   (quote
+    ((minibuffer)
+     (width . 20)
+     (border-width . 0)
+     (menu-bar-lines . 0)
+     (tool-bar-lines . 0)
+     (unsplittable . t)
+     (left-fringe . 0)
+     (scroll-bar-mode . -1))))
  '(speedbar-query-confirmation-method (quote none-but-delete))
- '(speedbar-supported-extension-expressions (quote (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".js" ".css" ".sh" ".po" ".css" ".dtml" ".phps?" ".py" ".sql" ".pgml" ".rst" ".rules" ".mak" ".conf" ".s?html" ".csv" ".lst" ".txt" "[Mm]akefile\\(\\.in\\)?")))
+ '(speedbar-supported-extension-expressions
+   (quote
+    (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".js" ".css" ".sh" ".po" ".css" ".dtml" ".phps?" ".py" ".sql" ".pgml" ".rst" ".rules" ".mak" ".conf" ".s?html" ".csv" ".lst" ".txt" "[Mm]akefile\\(\\.in\\)?")))
  '(speedbar-tag-hierarchy-method nil)
  '(standard-indent 4)
  '(tab-width 4)
@@ -681,7 +718,9 @@ it)"
  '(tramp-default-method "ssh")
  '(user-full-name "Frederic de Zorzi")
  '(user-mail-address "fredz@pimentech.fr")
- '(whitespace-style (quote (tabs trailing space-before-tab space-after-tab tab-mark))))
+ '(whitespace-style
+   (quote
+    (tabs trailing space-before-tab space-after-tab tab-mark))))
 
 
 (custom-set-faces
