@@ -20,7 +20,10 @@
         '(
           ("gnu" . "http://elpa.gnu.org/packages/")
           ("marmalade" . "http://marmalade-repo.org/packages/")
-          ("melpa" . "http://melpa.milkbox.net/packages/")))
+          ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+          ;("melpa" . "http://melpa.milkbox.net/packages/")
+          )
+        )
   )
 )
 (cond
@@ -49,7 +52,7 @@
   (menu-bar-mode 0)
   (persp-mode)
   (quick-perspective-keys)
-  (persp-switch "indicateur")
+  (persp-switch "pdf")
   (persp-switch "notesgroup")
   (persp-switch "samusocial")
   (persp-switch "main")  )
@@ -169,6 +172,7 @@
 (global-set-key "\C-b" 'switch-to-buffer)
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-k" 'kill-this-buffer)
+(global-set-key "\C-\M-g" 'magit-status)
 
 (defun my-put-file-name-on-clipboard ()
   "Put the current file name on the clipboard"
@@ -604,49 +608,24 @@ it)"
  '(TeX-close-quote ">>")
  '(TeX-fold-auto t)
  '(TeX-open-quote "<<")
+ '(ansi-color-names-vector ["#212121" "#CC5542" "#6aaf50" "#7d7c61" "#5180b3" "#DC8CC3" "#9b55c3" "#bdbdb3"])
  '(auto-compression-mode t nil (jka-compr))
  '(case-fold-search t)
  '(column-number-mode t)
  '(csv-separators (quote ("|")))
  '(current-language-environment "utf-8")
- '(custom-enabled-themes (quote (sanityinc-solarized-light)))
- '(custom-safe-themes
-   (quote
-    ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
+ '(custom-enabled-themes (quote (sanityinc-solarized-light ample-zen)))
+ '(custom-safe-themes (quote ("18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4")))
  '(default-input-method "rfc1345")
- '(file-coding-system-alist
-   (quote
-    (("\\.dz\\'" no-conversion . no-conversion)
-     ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
-     ("\\.tgz\\'" no-conversion . no-conversion)
-     ("\\.tbz\\'" no-conversion . no-conversion)
-     ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
-     ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion)
-     ("\\.elc\\'" emacs-mule . emacs-mule)
-     ("\\.utf\\(-8\\)?\\'" . utf-8)
-     ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix)
-     ("\\.tar\\'" no-conversion . no-conversion)
-     ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system)
-     ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system)
-     ("" undecided)
-     ("" undecided . undecided)
-     (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
- '(flymake-allowed-file-name-masks
-   (quote
-    (("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init)
-     ("\\.xml\\'" flymake-xml-init)
-     ("\\.cs\\'" flymake-simple-make-init)
-     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
-     ("\\.idl\\'" flymake-simple-make-init)
-     ("\\.py\\'" flymake-pyflakes-init))))
+ '(fci-rule-color "#2e2e2e")
+ '(file-coding-system-alist (quote (("\\.dz\\'" no-conversion . no-conversion) ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.tgz\\'" no-conversion . no-conversion) ("\\.tbz\\'" no-conversion . no-conversion) ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.elc\\'" emacs-mule . emacs-mule) ("\\.utf\\(-8\\)?\\'" . utf-8) ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix) ("\\.tar\\'" no-conversion . no-conversion) ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system) ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system) ("" undecided) ("" undecided . undecided) (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
+ '(flymake-allowed-file-name-masks (quote (("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\)?\\|CC\\)\\'" flymake-simple-make-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.idl\\'" flymake-simple-make-init) ("\\.py\\'" flymake-pyflakes-init))))
  '(fringe-mode (quote (0)) nil (fringe))
  '(global-font-lock-mode t nil (font-lock))
  '(gnus-nntp-server "news.free.fr")
- '(grep-find-command
-   "find . -type f -not -name \"*.svn-base\" -and -not -name \"*~\" -and \\( -name \"*.html\" -or -name \"*.php*\" -or -name \"*.py\" -or -name \"*.sql\" -or -name \"*.js\" -or -name \"*.css\" -or -name \"*.sh\"  -or -name \"*.conf\" -or -name \"*.tex\" -or -name \"Makefile\" \\) -print0 | xargs -0 -e grep -n -s -F ")
- '(grep-find-ignored-directories
-   (quote
-    ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
+ '(grep-find-command "find . -type f -not -name \"*.svn-base\" -and -not -name \"*~\" -and \\( -name \"*.html\" -or -name \"*.php*\" -or -name \"*.py\" -or -name \"*.sql\" -or -name \"*.js\" -or -name \"*.css\" -or -name \"*.sh\"  -or -name \"*.conf\" -or -name \"*.tex\" -or -name \"Makefile\" \\) -print0 | xargs -0 -e grep -n -s -F ")
+ '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
+ '(grep-find-ignored-files (quote (".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.jpg" "*.gif" "*.png" "*.JPG" "*.GIF" "*.PNG" "*.jpeg" "*.map" "*.pdf" "*.ttf" "*.swf" "*.eot" "*.*min*js" "*.*min*css")))
  '(gud-pdb-command-name "pdb.py")
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
@@ -656,12 +635,7 @@ it)"
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-child-indent 3)
  '(nxml-default-buffer-file-coding-system (quote utf-8))
- '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
-     ("\\.mm\\'" . default)
-     ("\\.x?html?\\'" . emacs)
-     ("\\.pdf\\'" . default))))
+ '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . emacs) ("\\.pdf\\'" . default))))
  '(org-todo-keywords (quote ((sequence "TODO" "TOCHECK" "|" "DONE"))))
  '(outline-cycle-emulate-tab t)
  '(pop-up-windows nil)
@@ -677,20 +651,9 @@ it)"
  '(setq require-final-newline t)
  '(speedbar-after-create-hook (quote (speedbar-frame-reposition-smartly)))
  '(speedbar-directory-unshown-regexp "^\\(CVS\\|RCS\\|SCCS\\|\\.[a-zA-Z1-9._-]*\\)\\'")
- '(speedbar-frame-parameters
-   (quote
-    ((minibuffer)
-     (width . 20)
-     (border-width . 0)
-     (menu-bar-lines . 0)
-     (tool-bar-lines . 0)
-     (unsplittable . t)
-     (left-fringe . 0)
-     (scroll-bar-mode . -1))))
+ '(speedbar-frame-parameters (quote ((minibuffer) (width . 20) (border-width . 0) (menu-bar-lines . 0) (tool-bar-lines . 0) (unsplittable . t) (left-fringe . 0) (scroll-bar-mode . -1))))
  '(speedbar-query-confirmation-method (quote none-but-delete))
- '(speedbar-supported-extension-expressions
-   (quote
-    (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".js" ".css" ".sh" ".po" ".css" ".dtml" ".phps?" ".py" ".sql" ".pgml" ".rst" ".rules" ".mak" ".conf" ".s?html" ".csv" ".lst" ".txt" "[Mm]akefile\\(\\.in\\)?")))
+ '(speedbar-supported-extension-expressions (quote (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".js" ".css" ".sh" ".po" ".css" ".dtml" ".phps?" ".py" ".sql" ".pgml" ".rst" ".rules" ".mak" ".conf" ".s?html" ".csv" ".lst" ".txt" "[Mm]akefile\\(\\.in\\)?")))
  '(speedbar-tag-hierarchy-method nil)
  '(standard-indent 4)
  '(tab-width 4)
@@ -699,9 +662,10 @@ it)"
  '(tramp-default-method "ssh")
  '(user-full-name "Frederic de Zorzi")
  '(user-mail-address "fredz@pimentech.fr")
- '(whitespace-style
-   (quote
-    (tabs trailing space-before-tab space-after-tab tab-mark))))
+ '(vc-annotate-background "#3b3b3b")
+ '(vc-annotate-color-map (quote ((20 . "#dd5542") (40 . "#CC5542") (60 . "#fb8512") (80 . "#baba36") (100 . "#bdbc61") (120 . "#7d7c61") (140 . "#6abd50") (160 . "#6aaf50") (180 . "#6aa350") (200 . "#6a9550") (220 . "#6a8550") (240 . "#6a7550") (260 . "#9b55c3") (280 . "#6CA0A3") (300 . "#528fd1") (320 . "#5180b3") (340 . "#6380b3") (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3")
+ '(whitespace-style (quote (tabs trailing space-before-tab space-after-tab tab-mark))))
 
 
 (custom-set-faces
