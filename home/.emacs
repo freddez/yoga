@@ -11,26 +11,16 @@
 
 (defvar emacs-linux (string-match "linux" system-configuration))
 
-(cond
- ((string-match "Emacs 23" (emacs-version))
-  (require 'color-theme)
-  (load "~/.emacs.d/zenburn")
-  (color-theme-zenburn)
-  )
+(require 'package)
+(package-initialize)
+(setq package-archives
+      '(
+	("gnu" . "http://elpa.gnu.org/packages/")
+	("marmalade" . "http://marmalade-repo.org/packages/")
+	("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+	)
+      )
 
- ((string-match "Emacs 24" (emacs-version))
-  (require 'package)
-  (package-initialize)
-  (setq package-archives
-        '(
-          ("gnu" . "http://elpa.gnu.org/packages/")
-          ("marmalade" . "http://marmalade-repo.org/packages/")
-          ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-          ;("melpa" . "http://melpa.milkbox.net/packages/")
-          )
-        )
-  )
-)
 (cond
  ((string-match "darwin" system-configuration)
   (setenv "PATH" "/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin/:/Volumes/home/fredz/bin:.:/Volumes/home/fredz/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin")
@@ -43,6 +33,7 @@
   (toggle-frame-fullscreen)
   )
  ((string= system-name "yoga")
+  ;(set-face-attribute 'default nil :font "-unknown-Droid Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
   (set-face-attribute 'default nil :font "Droid Sans Mono:pixelsize=33:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true")
   (desktop-save-mode 1)
   (menu-bar-mode 0)
@@ -615,7 +606,7 @@ it)"
  '(csv-separators (quote ("|")))
  '(current-language-environment "utf-8")
  '(custom-enabled-themes (quote (sanityinc-solarized-light ample-zen)))
- '(custom-safe-themes (quote ("18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4")))
+ '(custom-safe-themes (quote ("2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4")))
  '(default-input-method "rfc1345")
  '(fci-rule-color "#2e2e2e")
  '(file-coding-system-alist (quote (("\\.dz\\'" no-conversion . no-conversion) ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.tgz\\'" no-conversion . no-conversion) ("\\.tbz\\'" no-conversion . no-conversion) ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.elc\\'" emacs-mule . emacs-mule) ("\\.utf\\(-8\\)?\\'" . utf-8) ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix) ("\\.tar\\'" no-conversion . no-conversion) ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system) ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system) ("" undecided) ("" undecided . undecided) (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
