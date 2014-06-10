@@ -17,13 +17,13 @@
   (require 'package)
   (package-initialize)
   (setq package-archives
-        '(
-          ("gnu" . "http://elpa.gnu.org/packages/")
-          ("marmalade" . "http://marmalade-repo.org/packages/")
-          ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-          ;("melpa" . "http://melpa.milkbox.net/packages/")
-          )
-        )
+	'(
+	  ("gnu" . "http://elpa.gnu.org/packages/")
+	  ("marmalade" . "http://marmalade-repo.org/packages/")
+	  ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+	  ;("melpa" . "http://melpa.milkbox.net/packages/")
+	  )
+	)
   )
 )
 (cond
@@ -60,10 +60,10 @@
  )
 
 (setq frame-title-format
-      '("" (:eval (persp-name persp-curr)) ": "
+	  '("" (:eval (persp-name persp-curr)) ": "
 	(:eval (if (buffer-file-name)
-       (abbreviate-file-name (buffer-file-name))
-     "%b"))))
+	   (abbreviate-file-name (buffer-file-name))
+	 "%b"))))
 
 
 
@@ -71,69 +71,69 @@
 (outline-minor-mode 1)
 (eval-after-load 'outline
   '(progn
-    (require 'outline-magic)
-    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+	(require 'outline-magic)
+	(define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
 
 (add-hook 'org-mode-hook
-      (lambda ()
+	  (lambda ()
 	(local-set-key "\C-c\C-p" 'org-publish-current-project)
 	;;(require 'org-publish)
 	(setq org-publish-project-alist
-      '(
+	  '(
 	("samusocial-src"
-     :base-directory "~/src/samusocial/branches/2/src/dj/samusocial"
-     :publishing-directory "/ssh:fredz@safran.pimentech.net:~/public_html/samusocial"
-     :base-extension "org"
-     :table-of-contents nil
-     :recursive t
-     :publishing-function org-html-publish-to-html
-     :author-info "PimenTech"
-     :creator-info nil
-     :html-language "fr"
-     :makeindex t
-     :auto-sitemap nil
-     :sitemap-ignore-case t
-     :htmlized-source nil
-     :section-numbers nil
-     :html-head "<link rel=\"stylesheet\" href=\"http://pimente.ch/scripts/css/org.css\" type=\"text/css\" />"
-     )
+	 :base-directory "~/src/samusocial/branches/2/src/dj/samusocial"
+	 :publishing-directory "/ssh:fredz@safran.pimentech.net:~/public_html/samusocial"
+	 :base-extension "org"
+	 :table-of-contents nil
+	 :recursive t
+	 :publishing-function org-html-publish-to-html
+	 :author-info "PimenTech"
+	 :creator-info nil
+	 :html-language "fr"
+	 :makeindex t
+	 :auto-sitemap nil
+	 :sitemap-ignore-case t
+	 :htmlized-source nil
+	 :section-numbers nil
+	 :html-head "<link rel=\"stylesheet\" href=\"http://pimente.ch/scripts/css/org.css\" type=\"text/css\" />"
+	 )
 	("samusocial-static"
-     :base-directory "~/src/samusocial/branches/2/src/dj/samusocial"
-     :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf"
-     :publishing-directory "/ssh:fredz@safran.pimentech.net:~/public_html/samusocial"
-     :recursive t
-     :publishing-function org-publish-attachment
-     )
+	 :base-directory "~/src/samusocial/branches/2/src/dj/samusocial"
+	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf"
+	 :publishing-directory "/ssh:fredz@safran.pimentech.net:~/public_html/samusocial"
+	 :recursive t
+	 :publishing-function org-publish-attachment
+	 )
 	("samusocial" :components ("samusocial-src"
-       "samusocial-static"))
+	   "samusocial-static"))
 	)
-      )
+	  )
 
 
 	(setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
 	(add-hook 'org-babel-after-execute-hook
-      'bh/display-inline-images 'append)
+	  'bh/display-inline-images 'append)
 	;; Make babel results blocks lowercase
 	(setq org-babel-results-keyword "results")
 	(defun bh/display-inline-images ()
-      (condition-case nil
-      (org-display-inline-images)
+	  (condition-case nil
+	  (org-display-inline-images)
 		(error nil)))
 	(org-babel-do-load-languages
-     (quote org-babel-load-languages)
-     (quote ((emacs-lisp . t)
-     (dot . t)
-     (ditaa . t)
-     (R . t)
-     (python . t)
-     (ruby . t)
-     (gnuplot . t)
-     (clojure . t)
-     (sh . t)
-     (ledger . t)
-     (org . t)
-     (plantuml . t)
-     (latex . t))))
+	 (quote org-babel-load-languages)
+	 (quote ((emacs-lisp . t)
+	 (dot . t)
+	 (ditaa . t)
+	 (R . t)
+	 (python . t)
+	 (ruby . t)
+	 (gnuplot . t)
+	 (clojure . t)
+	 (sh . t)
+	 (ledger . t)
+	 (org . t)
+	 (plantuml . t)
+	 (latex . t))))
 	;; Do not prompt to confirm evaluation
 	:; This may be dangerous - make sure you understand the consequences
 	:; of setting this -- see the docstring for details
@@ -153,7 +153,7 @@
 (when (locate-library "diff-hl")
   (require 'diff-hl)
   (defadvice svn-status-update-modeline (after svn-update-diff-hl activate)
-    (diff-hl-update))
+	(diff-hl-update))
 )
 
 
@@ -178,13 +178,13 @@
   "Put the current file name on the clipboard"
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
-      default-directory
+	  default-directory
 	(buffer-file-name))))
-    (when filename
-      (with-temp-buffer
+	(when filename
+	  (with-temp-buffer
 	(insert filename)
 	(clipboard-kill-region (point-min) (point-max)))
-      (message filename))))
+	  (message filename))))
 
 (defun my-multi-occur-in-matching-buffers (regexp &optional allbufs)
   "Show all lines matching REGEXP in all buffers."
@@ -200,26 +200,26 @@
 (let (args arg key val)
   (setq args (pop args))
   (while liste
-    (setq arg (pop liste))
-    (setq key (pop arg))
-    (setq val (pop arg))
-    (puthash key val trans-hash)
-    )
+	(setq arg (pop liste))
+	(setq key (pop arg))
+	(setq val (pop arg))
+	(puthash key val trans-hash)
+	)
   )
 (puthash "\"" "&quot;" trans-hash)
 
 (defun hh (c)
-    (let (o)
-      (setq o (gethash (string c) trans-hash))
-      (if o o (string c))
-      )
+	(let (o)
+	  (setq o (gethash (string c) trans-hash))
+	  (if o o (string c))
+	  )
 )
 
 (defun chomp (str)
-      (while (string-match "\\`\n+\\|^\\s-+\\|\\s-+$\\|\n+\\'\\|  \\|
+	  (while (string-match "\\`\n+\\|^\\s-+\\|\\s-+$\\|\n+\\'\\|  \\|
 " str)
 	(setq str (replace-match "" t t str)))
-      str)
+	  str)
 
 
 (defun iso2sgmlentitystring (s)
@@ -229,10 +229,10 @@
 (defun trans_text ()
   (interactive)
   (let ((case-fold-search nil))
-    (query-replace-regexp ">\\([^<^\{^\}]*[a-z][^<^\{^\}]*\\)<"
-      (quote (replace-eval-replacement concat ">{% trans \"" (replace-quote (iso2sgmlentitystring (match-string 1))) "\" %}<")) nil
-      (if (and transient-mark-mode mark-active) (region-beginning)) (if (and transient-mark-mode mark-active) (region-end)))
-    )
+	(query-replace-regexp ">\\([^<^\{^\}]*[a-z][^<^\{^\}]*\\)<"
+	  (quote (replace-eval-replacement concat ">{% trans \"" (replace-quote (iso2sgmlentitystring (match-string 1))) "\" %}<")) nil
+	  (if (and transient-mark-mode mark-active) (region-beginning)) (if (and transient-mark-mode mark-active) (region-end)))
+	)
 )
 ;;; /special gettext
 
@@ -242,12 +242,12 @@
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-       'flymake-create-temp-inplace))
-       (local-file (file-relative-name
+	(let* ((temp-file (flymake-init-create-temp-buffer-copy
+	   'flymake-create-temp-inplace))
+	   (local-file (file-relative-name
 			temp-file
 			(file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
+	  (list "pyflakes" (list local-file))))
   )
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -257,41 +257,41 @@
 ;; keyboard user's annoyance
 
 ;;flymake-ler(file line type text &optional full-file)
-(defun show-fly-err-at-point ()
-  "If the cursor is sitting on a flymake error, display the
-message in the minibuffer"
-  (interactive)
-  (let ((line-no (line-number-at-pos)))
-    (dolist (elem flymake-err-info)
-      (if (eq (car elem) line-no)
-      (let ((err (car (second elem))))
-	(message "%s" (fly-pyflake-determine-message err)))))))
+;; (defun show-fly-err-at-point ()
+;;   "If the cursor is sitting on a flymake error, display the
+;; message in the minibuffer"
+;;   (interactive)
+;;   (let ((line-no (line-number-at-pos)))
+;;	(dolist (elem flymake-err-info)
+;;    (if (eq (car elem) line-no)
+;;    (let ((err (car (second elem))))
+;;	(message "%s" (fly-pyflake-determine-message err)))))))
 
-(defun fly-pyflake-determine-message (err)
-  "pyflake is flakey if it has compile problems, this adjusts the
-message to display, so there is one ;)"
-  (cond ((not (or (eq major-mode 'Python) (eq major-mode 'python-mode) t)))
-	((null (flymake-ler-file err))
-     ;; normal message do your thing
-     (flymake-ler-text err))
-	(t ;; could not compile err
-     (format "compile error, problem on line %s" (flymake-ler-line err)))))
+;; (defun fly-pyflake-determine-message (err)
+;;   "pyflake is flakey if it has compile problems, this adjusts the
+;; message to display, so there is one ;)"
+;;   (cond ((not (or (eq major-mode 'Python) (eq major-mode 'python-mode) t)))
+;;	((null (flymake-ler-file err))
+;;   ;; normal message do your thing
+;;   (flymake-ler-text err))
+;;	(t ;; could not compile err
+;;   (format "compile error, problem on line %s" (flymake-ler-line err)))))
 
-(defadvice flymake-goto-next-error (after display-message activate compile)
-  "Display the error in the mini-buffer rather than having to mouse over it"
-  (show-fly-err-at-point))
+;; (defadvice flymake-goto-next-error (after display-message activate compile)
+;;   "Display the error in the mini-buffer rather than having to mouse over it"
+;;   (show-fly-err-at-point))
 
-(defadvice flymake-goto-prev-error (after display-message activate compile)
-  "Display the error in the mini-buffer rather than having to mouse over it"
-  (show-fly-err-at-point))
+;; (defadvice flymake-goto-prev-error (after display-message activate compile)
+;;   "Display the error in the mini-buffer rather than having to mouse over it"
+;;   (show-fly-err-at-point))
 
-(defadvice flymake-mode (before post-command-stuff activate compile)
-  "Add functionality to the post command hook so that if the
-cursor is sitting on a flymake error the error information is
-displayed in the minibuffer (rather than having to mouse over
-it)"
-  (set (make-local-variable 'post-command-hook)
-       (cons 'show-fly-err-at-point post-command-hook)))
+;; (defadvice flymake-mode (before post-command-stuff activate compile)
+;;   "Add functionality to the post command hook so that if the
+;; cursor is sitting on a flymake error the error information is
+;; displayed in the minibuffer (rather than having to mouse over
+;; it)"
+;;   (set (make-local-variable 'post-command-hook)
+;;     (cons 'show-fly-err-at-point post-command-hook)))
 
 
 
@@ -301,8 +301,8 @@ it)"
 (defun font-existsp (font)
   "Check that a font exists: http://www.emacswiki.org/emacs/SetFonts#toc8"
   (and (window-system)
-       (fboundp 'x-list-fonts)
-       (x-list-fonts font)))
+	   (fboundp 'x-list-fonts)
+	   (x-list-fonts font)))
 
 
 ;; (setq kjfletch-font-list
@@ -325,14 +325,14 @@ it)"
 
 
 (defun increment-number-at-point ()
-      (interactive)
-      (skip-chars-backward "0123456789")
-      (or (looking-at "[0123456789]+")
-      (error "No number at point"))
-      (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+	  (interactive)
+	  (skip-chars-backward "0123456789")
+	  (or (looking-at "[0123456789]+")
+	  (error "No number at point"))
+	  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
 
-(setq indent-tabs-mode nil)
+;(setq indent-tabs-mode nil)
 
 (setq inhibit-startup-message t)
 
@@ -359,14 +359,14 @@ it)"
   (interactive)
   (beginning-of-line)
   (let
-      ((beg (point)))
-    (end-of-line)
-    (let ((str (buffer-substring beg (point))))
-      (when commentfirst
+	  ((beg (point)))
+	(end-of-line)
+	(let ((str (buffer-substring beg (point))))
+	  (when commentfirst
 	(comment-region beg (point)))
-      (insert
-       (concat (if (= 0 (forward-line 1)) "" "\n") str "\n"))
-      (forward-line -1))))
+	  (insert
+	   (concat (if (= 0 (forward-line 1)) "" "\n") str "\n"))
+	  (forward-line -1))))
 (global-set-key "\C-\M-y" 'djcb-duplicate-line)
 
 
@@ -375,34 +375,34 @@ it)"
  (interactive "*r")
  (save-excursion
    (save-restriction
-     (narrow-to-region from to)
-     (goto-char from)
-     (iso-iso2sgml from to)
-     (insert "{% trans \"")
-     (goto-char (point-max))
-     (insert "\" %}")
-     (point-max))))
+	 (narrow-to-region from to)
+	 (goto-char from)
+	 (iso-iso2sgml from to)
+	 (insert "{% trans \"")
+	 (goto-char (point-max))
+	 (insert "\" %}")
+	 (point-max))))
 (defun django-insert-transpy (from to &optional buffer)
  (interactive "*r")
  (save-excursion
    (save-restriction
-     (narrow-to-region from to)
-     (goto-char from)
-     (iso-iso2sgml from to)
-     (insert "_(")
-     (goto-char (point-max))
-     (insert ")")
-     (point-max))))
+	 (narrow-to-region from to)
+	 (goto-char from)
+	 (iso-iso2sgml from to)
+	 (insert "_(")
+	 (goto-char (point-max))
+	 (insert ")")
+	 (point-max))))
 
 
 (defun django-form-help-text (&optional buffer)
   (interactive)
   (kill-line)
-     (yank)
-     (yank)
-     (backward-char 3)
-     (insert ".help_text")
-     (beginning-of-line)
+	 (yank)
+	 (yank)
+	 (backward-char 3)
+	 (insert ".help_text")
+	 (beginning-of-line)
 )
 
 
@@ -411,62 +411,67 @@ it)"
 (defun py-outline-level ()
   "Report outline level for Python outlining."
   (save-excursion
-    (end-of-line)
-    (let ((indentation (progn
-     (re-search-backward py-outline-regexp)
-     (match-string-no-properties 1))))
-      (if (and (> (length indentation) 0)
-       (string= "\t" (substring indentation 0 1)))
-      (length indentation)
+	(end-of-line)
+	(let ((indentation (progn
+	 (re-search-backward py-outline-regexp)
+	 (match-string-no-properties 1))))
+	  (if (and (> (length indentation) 0)
+	   (string= "\t" (substring indentation 0 1)))
+	  (length indentation)
 	(/ (length indentation) 4))))) ; py-indent-offset
 
 
 
 (add-hook 'web-mode-hook
-          '(lambda ()
-             (set-face-attribute 'web-mode-html-tag-face nil
-                                 :foreground "LightBlue" :weight 'bold)
-             (setq web-mode-markup-indent-offset 4)
-             (setq web-mode-code-indent-offset 2
-                   web-mode-markup-indent-offset 2
-                   web-mode-tag-auto-close-style 2
-                   web-mode-void-elements
-                   '("area" "base" "br" "col" "command" "embed" "hr" "img" "input" "keygen"
-                     "link" "meta" "param" "source" "track" "wbr" "dtml-var" "dtml-else"
-                     "dtml-call" "dtml-with" "dtml-let")
-                   )
+	  '(lambda ()
+		 (set-face-attribute 'web-mode-html-tag-face nil
+				 :foreground "LightBlue" :weight 'bold)
+		 (setq web-mode-markup-indent-offset 4)
+		 (setq web-mode-code-indent-offset 2
+		   web-mode-markup-indent-offset 2
+		   web-mode-tag-auto-close-style 2
+		   web-mode-void-elements
+		   '("area" "base" "br" "col" "command" "embed" "hr" "img" "input" "keygen"
+			 "link" "meta" "param" "source" "track" "wbr" "dtml-var" "dtml-else"
+			 "dtml-call" "dtml-with" "dtml-let")
+		   )
 
-             (local-set-key "\C-c\C-g" 'django-insert-trans)
-             (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
-             (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
-             (local-set-key (kbd "C-c <down>") 'web-mode-element-end)
-             (local-set-key (kbd "C-c <up>") 'web-mode-element-beginning)
-             )
-          )
+		 (local-set-key "\C-c\C-g" 'django-insert-trans)
+		 (local-set-key (kbd "C-c <left>") 'web-mode-fold-or-unfold)
+		 (local-set-key (kbd "C-c <right>") 'web-mode-fold-or-unfold)
+		 (local-set-key (kbd "C-c <down>") 'web-mode-element-end)
+		 (local-set-key (kbd "C-c <up>") 'web-mode-element-beginning)
+		 )
+	  )
 ;(set-face-attribute 'web-mode-html-tag-face nil :inherit font-lock-keyword-face)
 
 
 (add-hook 'python-mode-hook
-      '(lambda ()
-     (outline-minor-mode 1)
-     (setq
-      tab-width 4
-      python-indent 4
-      outline-regexp py-outline-regexp
-      outline-level 'py-outline-level)
-     (local-set-key "\C-c\C-t" 'django-insert-transpy)
-     (local-set-key [f9] (lambda () (interactive) (insert "import ipdb;ipdb.set_trace()")))
-     (local-set-key (kbd "C-c <left>") 'hide-subtree)
-     (local-set-key (kbd "C-c <right>") 'show-subtree)
-     ))
+	  '(lambda ()
+	 (outline-minor-mode 1)
+	 (setq
+	  tab-width 4
+	  python-indent 4
+	  outline-regexp py-outline-regexp
+	  outline-level 'py-outline-level)
+
+	  ;(guess-style-guess-tabs-mode)
+	  ;(when indent-tabs-mode
+										;	(guess-style-guess-tab-width))
+
+	 (local-set-key "\C-c\C-t" 'django-insert-transpy)
+	 (local-set-key [f9] (lambda () (interactive) (insert "import ipdb;ipdb.set_trace()")))
+	 (local-set-key (kbd "C-c <left>") 'hide-subtree)
+	 (local-set-key (kbd "C-c <right>") 'show-subtree)
+	 ))
 
 (add-hook 'sgml-mode-hook
-      (lambda ()
+	  (lambda ()
 	(local-set-key "\C-c\C-g" 'django-insert-trans)
 	(setq indent-tabs-mode nil)
 	))
 (add-hook 'js2-mode-hook
-      (lambda ()
+	  (lambda ()
 	(setq indent-tabs-mode nil)
 	(local-set-key (kbd "C-c <left>") 'js2-mode-toggle-element)
 	(local-set-key (kbd "C-c <right>") 'js2-mode-toggle-element)
@@ -474,19 +479,19 @@ it)"
 
 
 (add-hook 'js2-post-parse-callbacks
-      (lambda ()
+	  (lambda ()
 	(when (> (buffer-size) 0)
-      (let ((btext (replace-regexp-in-string
+	  (let ((btext (replace-regexp-in-string
 		": *true" " "
 		(replace-regexp-in-string "[\n\t ]+" " " (buffer-substring-no-properties 1 (buffer-size)) t t))))
 		(mapc (apply-partially 'add-to-list 'js2-additional-externs)
-      (split-string
-       (if (string-match "/\\* *global *\\(.*?\\) *\\*/" btext) (match-string-no-properties 1 btext) "")
-       " *, *" t))
+	  (split-string
+	   (if (string-match "/\\* *global *\\(.*?\\) *\\*/" btext) (match-string-no-properties 1 btext) "")
+	   " *, *" t))
 		))))
 
 (add-hook 'nxml-mode-hook
-      (lambda ()
+	  (lambda ()
 	(local-set-key (kbd "C-c <up>") 'nxml-backward-element)
 	(local-set-key (kbd "C-c <down>") 'nxml-forward-element)
 	))
@@ -503,8 +508,8 @@ it)"
 
   (add-hook 'LaTeX-mode-hook
 	(lambda ()
-      (local-set-key (kbd "_") (lambda () (interactive) (insert "\\_")))
-      ))
+	  (local-set-key (kbd "_") (lambda () (interactive) (insert "\\_")))
+	  ))
   (setq reftex-plug-into-AUCTeX t)
   )
 
@@ -515,7 +520,7 @@ it)"
 
 
 ;(add-to-list 'auto-mode-alist '("\\.[sx]?html?\\'" . django-html-mode))
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.dtml?\\'" . web-mode))
 (setq web-mode-engines-alist '(("django" . "\\.html\\'") ("blade" . "\\.blade\\.")) )
@@ -528,7 +533,7 @@ it)"
 
 (add-hook 'js-mode-hook 'flymake-json-maybe-load)
 (setq auto-mode-alist
-      (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
+	  (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
 	auto-mode-alist))
 
 (modify-coding-system-alist 'file "\\.dtml\\'" 'iso-latin-1)
@@ -552,7 +557,7 @@ it)"
  sgml-display-char-list-filename "/usr/share/sgml/charsets/iso88591.map"
  sgml-live-element-indicator t
  sgml-public-map '("%S"  "/usr/share/sgml/%S" "/usr/share/sgml/%o/%c/%d"
-       "/usr/local/share/sgml/%o/%c/%d" "/usr/local/lib/sgml/%o/%c/%d")
+	   "/usr/local/share/sgml/%o/%c/%d" "/usr/local/lib/sgml/%o/%c/%d")
  sgml-system-path '("/usr/share/sgml" "/usr/share/sgml/cdtd" "/usr/local/share/sgml"
 	"/usr/local/lib/sgml")
  sgml-tag-region-if-active t
@@ -562,7 +567,7 @@ it)"
 
 ;; Set up the faces for markup
 (setq-default sgml-markup-faces
-      '((start-tag . font-lock-keyword-face)
+	  '((start-tag . font-lock-keyword-face)
 		(end-tag . font-lock-keyword-face)
 		(ignored . font-lock-string-face)
 		(ms-start . font-lock-constant-face)
@@ -576,18 +581,18 @@ it)"
 ;; Turn on the markup based on whether font-lock would be on
 (eval-after-load "psgml"
   '(lambda ()
-     (if (boundp 'global-font-lock-mode)
-     (if global-font-lock-mode
-     (setq-default sgml-set-face t)
-       (setq-default sgml-set-face nil))
-       (setq-default sgml-set-face (eq 'x  window-system)))
+	 (if (boundp 'global-font-lock-mode)
+	 (if global-font-lock-mode
+	 (setq-default sgml-set-face t)
+	   (setq-default sgml-set-face nil))
+	   (setq-default sgml-set-face (eq 'x  window-system)))
 
-     (when (default-value 'sgml-set-face)
-       (require 'font-lock))
-     ;; Lots of overlays in a buffer is bad news since they have to
-     ;; be relocated on changes, with typically quadratic
-     ;; behaviour.
-     ))
+	 (when (default-value 'sgml-set-face)
+	   (require 'font-lock))
+	 ;; Lots of overlays in a buffer is bad news since they have to
+	 ;; be relocated on changes, with typically quadratic
+	 ;; behaviour.
+	 ))
 
 
 
@@ -627,7 +632,7 @@ it)"
  '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "CACHE")))
  '(grep-find-ignored-files (quote (".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.jpg" "*.gif" "*.png" "*.JPG" "*.GIF" "*.PNG" "*.jpeg" "*.map" "*.pdf" "*.ttf" "*.swf" "*.eot" "*.*min*js" "*.*min*css")))
  '(gud-pdb-command-name "pdb.py")
- '(indent-tabs-mode nil)
+ ;'(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
  '(js2-mode-escape-quotes nil)
  '(js2-mode-squeeze-spaces nil)
@@ -665,7 +670,8 @@ it)"
  '(vc-annotate-background "#3b3b3b")
  '(vc-annotate-color-map (quote ((20 . "#dd5542") (40 . "#CC5542") (60 . "#fb8512") (80 . "#baba36") (100 . "#bdbc61") (120 . "#7d7c61") (140 . "#6abd50") (160 . "#6aaf50") (180 . "#6aa350") (200 . "#6a9550") (220 . "#6a8550") (240 . "#6a7550") (260 . "#9b55c3") (280 . "#6CA0A3") (300 . "#528fd1") (320 . "#5180b3") (340 . "#6380b3") (360 . "#DC8CC3"))))
  '(vc-annotate-very-old-color "#DC8CC3")
- '(whitespace-style (quote (tabs trailing space-before-tab space-after-tab tab-mark))))
+ ;'(whitespace-style (quote (tabs trailing space-before-tab space-after-tab tab-mark))
+ )
 
 
 (custom-set-faces
