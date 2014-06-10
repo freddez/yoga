@@ -1,7 +1,12 @@
-;(add-to-list 'load-path "~/.emacs.d/")
+(require 'iso-transl) ; deadkeys problems with ubuntu
 (global-auto-revert-mode t) ;; raffraîchit les buffers en cas de svn up
 
 ;current buffer path in window title invocation-name
+(setq frame-title-format
+      '("" (:eval (persp-name persp-curr)) ": "
+	(:eval (if (buffer-file-name)
+       (abbreviate-file-name (buffer-file-name))
+     "%b"))))
 
 
 (defvar emacs-linux (string-match "linux" system-configuration))
@@ -64,8 +69,6 @@
 	(:eval (if (buffer-file-name)
 	   (abbreviate-file-name (buffer-file-name))
 	 "%b"))))
-
-
 
 
 (outline-minor-mode 1)
