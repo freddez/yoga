@@ -3,10 +3,10 @@
 
 ;current buffer path in window title invocation-name
 (setq frame-title-format
-      '("" (:eval (persp-name persp-curr)) ": "
+	  '("" (:eval (persp-name persp-curr)) ": "
 	(:eval (if (buffer-file-name)
-       (abbreviate-file-name (buffer-file-name))
-     "%b"))))
+	   (abbreviate-file-name (buffer-file-name))
+	 "%b"))))
 
 
 (defvar emacs-linux (string-match "linux" system-configuration))
@@ -14,12 +14,12 @@
 (require 'package)
 (package-initialize)
 (setq package-archives
-      '(
+	  '(
 	("gnu" . "http://elpa.gnu.org/packages/")
 	("marmalade" . "http://marmalade-repo.org/packages/")
 	("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
 	)
-      )
+	  )
 
 (cond
  ((string-match "darwin" system-configuration)
@@ -43,16 +43,15 @@
 
  ((string-match "pimentech.net" system-name)
   (set-face-attribute 'default nil :font "-unknown-Droid Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
-  (load-theme 'ample-zen t)
+  ;; (load-theme 'ample-zen t)
 
   (menu-bar-mode 0)
   (persp-mode)
   (quick-perspective-keys)
-  (persp-switch "pdf")
-  (persp-switch "notesgroup")
-  (persp-switch "samusocial")
+  (persp-switch "century")
   (persp-switch "main")  )
-
+  (persp-switch "pdf")
+  (persp-switch "samusocial")
  )
 
 (setq frame-title-format
@@ -140,6 +139,15 @@
 ;(require 'whitespace)
 (autoload 'whitespace-mode           "whitespace" "Toggle whitespace visualization."        t)
 (autoload 'whitespace-toggle-options "whitespace" "Toggle local `whitespace-mode' options." t)
+
+(setq whitespace-display-mappings
+	   ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+	  '(
+		;(space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+		;(newline-mark 10 [182 10]) ; 10 LINE FEED
+		(tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+		))
+
 ;; nuke whitespaces when writing to a file
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -326,7 +334,7 @@
 	  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
 
-;(setq indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 
 (setq inhibit-startup-message t)
 
@@ -418,8 +426,7 @@
 
 (add-hook 'web-mode-hook
 	  '(lambda ()
-		 (set-face-attribute 'web-mode-html-tag-face nil
-				 :foreground "LightBlue" :weight 'bold)
+		 (set-face-attribute 'web-mode-html-tag-face nil :foreground "Black" :weight 'bold)
 		 (setq web-mode-markup-indent-offset 4)
 		 (setq web-mode-code-indent-offset 2
 		   web-mode-markup-indent-offset 2
@@ -613,8 +620,8 @@
  '(column-number-mode t)
  '(csv-separators (quote ("|")))
  '(current-language-environment "utf-8")
- '(custom-enabled-themes (quote (sanityinc-solarized-light ample-zen)))
- '(custom-safe-themes (quote ("2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4")))
+ ;; '(custom-enabled-themes (quote (sanityinc-solarized-light ample-zen)))
+ ;; '(custom-safe-themes (quote ("2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" "18d91d95e20450b0cdab4d7eed600e80c22cc7a4153a87989daa5a1c5aff3b83" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4")))
  '(default-input-method "rfc1345")
  '(fci-rule-color "#2e2e2e")
  '(file-coding-system-alist (quote (("\\.dz\\'" no-conversion . no-conversion) ("\\.g?z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.tgz\\'" no-conversion . no-conversion) ("\\.tbz\\'" no-conversion . no-conversion) ("\\.bz2\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.Z\\(~\\|\\.~[0-9]+~\\)?\\'" no-conversion . no-conversion) ("\\.elc\\'" emacs-mule . emacs-mule) ("\\.utf\\(-8\\)?\\'" . utf-8) ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix) ("\\.tar\\'" no-conversion . no-conversion) ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system) ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" . latexenc-find-file-coding-system) ("" undecided) ("" undecided . undecided) (".-square\\.naxos-fr\\.net" utf-8 . utf-8))))
