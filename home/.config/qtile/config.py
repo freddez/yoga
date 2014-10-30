@@ -82,6 +82,7 @@ keys = [
     Key([mod], "g",      lazy.spawn("google-chrome")),
     Key([mod], "Return", lazy.spawn("x-terminal-emulator")),
     Key([mod], "space",  lazy.nextlayout()),
+    Key([mod, "control"], "space",  lazy.nextlayout()),
     Key([mod], "c",      lazy.window.kill()),
     Key([mod], "t",      lazy.window.disable_floating()),
     Key([mod, "shift"], "t", lazy.window.enable_floating()),
@@ -125,7 +126,7 @@ layouts = [
     #layout.Slice('top', 320, wmclass='pino')
     layout.Tile(**border),
     # layout.Stack(**border),
-    layout.Zoomy(),
+    #layout.Zoomy(),
 ]
 floating_layout = layout.Floating(**border)
 
@@ -140,10 +141,10 @@ GROUPS = (('1', 'ampersand'),
           )
 
 groups = [
-    Group('1', spawn='firefox-bin', layout='max',
+    Group('1', layout='max',
           matches=[Match(
               wm_class=['Firefox', 'google-chrome', 'Google-chrome'])]),
-    Group('2', spawn='firefox-bin', layout='max',
+    Group('2', layout='max',
           matches=[Match(wm_class=["emacs", "Emacs"])]),
     Group('3', layout='max'),
     Group('4', layout='max'),
@@ -183,8 +184,8 @@ if HOSTNAME.startswith('yoga'):
                     widget.WindowName(fontsize=32),
                     widget.Sep(),
                     # widget.BatteryIcon(battery_name="BAT1"),
-                    widget.Battery(battery_name="BAT1",
-                                   format="{percent:2.0%}"),
+                    # widget.Battery(battery_name="BAT1",
+                    #                format="{percent:2.0%}"),
                     # widget.Volume(cardid=1, theme_path=THEME_PATH),
 
                     # widget.Sep(),
@@ -198,9 +199,10 @@ if HOSTNAME.startswith('yoga'):
                     # widget.NetGraph(interface='wlan0'),
                     widget.Sep(),
                     widget.Notify(),
+                    widget.CurrentLayout(),
                     widget.Clock('%d/%m %H:%M', fontsize=34)
                 ],
-                42,
+                43,
             ),
         )]
 else:
@@ -209,14 +211,14 @@ else:
             top=bar.Bar(
                 [
                     widget.GroupBox(margin_x=1, margin_y=0,
-                                    fontsize=8, disable_drag=True),
+                                    fontsize=9, disable_drag=True),
                     widget.Sep(),
-                    widget.WindowName(fontsize=16),
+                    widget.TaskList(fontsize=16,max_title_width=300),
                     widget.Sep(),
-                    #widget.Notify(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
                     widget.Sep(),
+                    widget.Notify(),
                     widget.Clock('%d/%m %H:%M', fontsize=17)
                 ],
                 21,
@@ -225,8 +227,8 @@ else:
         Screen(
             top=bar.Bar([
                 widget.GroupBox(margin_x=1, margin_y=0,
-                                fontsize=8, disable_drag=True),
-                widget.WindowName(fontsize=16)
+                                fontsize=9, disable_drag=True),
+                widget.TaskList(fontsize=16,max_title_width=300),
             ], 21),
         )
     ]
