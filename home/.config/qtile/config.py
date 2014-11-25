@@ -35,9 +35,9 @@ elif HOSTNAME.startswith('paprika'):
     @hook.subscribe.startup
     def startup():
         execute_once("setxkbmap -layout fr")
+        execute_once("feh --bg-scale /home/fredz/Documents/background.jpg")
+        execute_once("xsetroot -cursor_name left_ptr")
         #execute_once("gnome-settings-daemon")
-
-
 
 
         
