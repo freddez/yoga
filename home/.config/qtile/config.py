@@ -29,7 +29,7 @@ if HOSTNAME.startswith('yoga'):
     def startup():
         execute_once("xbacklight -set 10")
         execute_once("pkill -9 emacs")
-        execute_once("gnome-settings-daemon")
+        #execute_once("gnome-settings-daemon")
         execute_once("nm-applet")
 
 
