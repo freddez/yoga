@@ -31,8 +31,16 @@ if HOSTNAME.startswith('yoga'):
         execute_once("pkill -9 emacs")
         #execute_once("gnome-settings-daemon")
         execute_once("nm-applet")
+elif HOSTNAME.startswith('paprika'):
+    @hook.subscribe.startup
+    def startup():
+        execute_once("setxkbmap -layout fr")
+        execute_once("feh --bg-scale /home/fredz/Documents/background.jpg")
+        execute_once("xsetroot -cursor_name left_ptr")
+        #execute_once("gnome-settings-daemon")
 
 
+        
 class Commands(object):
     volume = 'amixer -q sset Master %s && aplay -d default /usr/share/sounds/sound-icons/glass-water-1.wav'
     yoga_rotate = "yoga.rotate.sh"
@@ -70,7 +78,14 @@ keys = [
     Key([mod], "semicolon", lazy.layout.decrease_nmaster()),
 
     Key([mod], "Tab", lazy.group.next_window()),
+
     Key([mod], "n", lazy.layout.up()),
+
+    Key([mod], "Prior", lazy.layout.up()),
+    Key([mod], "Next", lazy.layout.down()),
+    # Key([mod, "control"], "Prior", lazy.layout.shift_up()),
+    # Key([mod, "control"], "Next", lazy.layout.shift_down()),
+
     Key([mod, "shift"], "Tab", lazy.group.prev_window()),
     Key([mod, "shift"], "Return", lazy.layout.rotate()),
     Key([mod, "shift"], "space", lazy.layout.toggle_split()),
@@ -190,7 +205,7 @@ if HOSTNAME.startswith('yoga'):
 
                     # widget.Sep(),
                     # widget.Systray(),
-                    # widget.Sep(),
+                    widget.KeyboardLayout(configured_keyboards=['fr']),
 
                     widget.CPUGraph(),
                     # widget.MemoryGraph(),
@@ -213,7 +228,7 @@ else:
                     widget.GroupBox(margin_x=1, margin_y=0,
                                     fontsize=9, disable_drag=True),
                     widget.Sep(),
-                    widget.TaskList(fontsize=16,max_title_width=300),
+                    widget.TaskList(fontsize=14,max_title_width=800),
                     widget.Sep(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
@@ -228,7 +243,7 @@ else:
             top=bar.Bar([
                 widget.GroupBox(margin_x=1, margin_y=0,
                                 fontsize=9, disable_drag=True),
-                widget.TaskList(fontsize=16,max_title_width=300),
+                widget.TaskList(fontsize=14,max_title_width=800),
             ], 21),
         )
     ]
@@ -242,22 +257,24 @@ floating_layout = layout.floating.Floating(
         'Florence',
     )])
 
-@hook.subscribe.client_new
-def floating_dialogs(window):
-    if not window.window:
-        return
-    win = window.window
-    wm_class = win.get_wm_class() or []
+# @hook.subscribe.client_new
+# def floating_dialogs(window):
+#     if not window.window:
+#         return
+#     win = window.window
+#     wm_class = win.get_wm_class() or []
 
-    if 'Florence' in wm_class:
-        logging.debug(">%s" % str(window.__dict__))
-        window.floating = True
-        window.width = 1200
-        window.height = 400
-    elif (win.get_wm_type() == 'dialog'
-          or win.get_wm_transient_for() or
-          (win.get_wm_window_role() == "browser"
-           and 'Google-chrome' not in wm_class
-           and (window._float_info['x'] != 0
-                or window._float_info['y'] != 0))):
-        window.floating = True
+#     if 'Florence' in wm_class:
+#         window.floating = True
+#         window.width = 1200
+#         window.height = 400
+#     elif (win.get_wm_type() == 'dialog'
+#           or win.get_wm_transient_for() or
+#           (win.get_wm_window_role() == "browser"
+#            and 'Google-chrome' not in wm_class
+#            and (window._float_info['x'] != 0
+#                 or window._float_info['y'] != 0))):
+
+#         logging.debug(">%s %s" % (str(win.get_wm_type()), 
+#                                   str(wm_class) ))
+#         window.floating = True
