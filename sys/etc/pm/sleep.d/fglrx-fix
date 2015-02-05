@@ -1,0 +1,18 @@
+#!/bin/bash
+#Script kills autofs when going into standby to eliminate issues with it
+case $1 in
+
+suspend)
+#suspending to RAM
+    chvt 1
+    echo "Going to sleep"
+    sleep 1
+;;
+resume)
+#resume from suspend 
+    echo "try to resume"
+    sleep 1
+    chvt 7
+;;       
+esac    
+
