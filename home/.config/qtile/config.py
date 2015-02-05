@@ -5,7 +5,7 @@ from libqtile import layout, bar, widget, hook
 import socket
 import subprocess
 import re
-import logging
+# import logging
 
 HOSTNAME = socket.gethostname()
 mod = "mod4"
@@ -37,7 +37,7 @@ elif HOSTNAME.startswith('paprika'):
         execute_once("setxkbmap -layout fr")
         execute_once("feh --bg-scale /home/fredz/Documents/background.jpg")
         execute_once("xsetroot -cursor_name left_ptr")
-        #execute_once("gnome-settings-daemon")
+        execute_once("gnome-settings-daemon")
 
 
         
@@ -145,28 +145,26 @@ layouts = [
 ]
 floating_layout = layout.Floating(**border)
 
-GROUPS = (('1', 'ampersand'),
-          ('2', 'eacute'),
-          ('3', 'quotedbl'),
-          ('4', 'apostrophe'),
-          ('5', 'parenleft'),
-          ('6', 'minus'),
-          ('7', 'egrave'),
-          ('8', 'underscore'),
-          )
+GROUPS = (
+    ('1 WWW', 'ampersand'),
+    ('2 Emacs', 'eacute'),
+    ('3 Figaro', 'quotedbl'),
+    ('4 Samusocial', 'apostrophe'),
+    ('5 Century', 'parenleft'),
+    ('6 Pdf', 'minus'),
+    ('7 Ext', 'egrave'),
+    ('8 Divers', 'underscore')
+)
 
 groups = [
-    Group('1', layout='max',
-          matches=[Match(
-              wm_class=['Firefox', 'google-chrome', 'Google-chrome'])]),
-    Group('2', layout='max',
-          matches=[Match(wm_class=["emacs", "Emacs"])]),
-    Group('3', layout='max'),
-    Group('4', layout='max'),
-    Group('5', layout='max'),
-    Group('6', layout='max'),
-    Group('7', layout='max'),
-    Group('8', layout='max'),
+    Group(GROUPS[0][0], layout='max', matches=[Match(wm_class=['Firefox', 'google-chrome', 'Google-chrome'])]),
+    Group(GROUPS[1][0], layout='max', matches=[Match(wm_class=["emacs", "Emacs"])]),
+    Group(GROUPS[2][0], layout='max'),
+    Group(GROUPS[3][0], layout='max'),
+    Group(GROUPS[4][0], layout='max'),
+    Group(GROUPS[5][0], layout='max'),
+    Group(GROUPS[6][0], layout='max'),
+    Group(GROUPS[7][0], layout='max'),
 ]
 
 for name, key in GROUPS:
@@ -177,13 +175,13 @@ for name, key in GROUPS:
         Key([mod, "shift"], key, lazy.window.togroup(name))
     )
 # ?????
-for i in groups:
-    keys.append(
-        Key([mod], i.name, lazy.group[i.name].toscreen())
-    )
-    keys.append(
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
-    )
+# for i in groups:
+#     keys.append(
+#         Key([mod], i.name, lazy.group[i.name].toscreen())
+#     )
+#     keys.append(
+#         Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
+#     )
 
 
 THEME_PATH = "/usr/share/icons/gnome/32x32/status"
@@ -193,8 +191,7 @@ if HOSTNAME.startswith('yoga'):
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(margin_x=1, margin_y=0,
-                                    fontsize=21, disable_drag=True),
+                    widget.GroupBox(margin_x=1, margin_y=0, fontsize=21, disable_drag=True),
                     widget.Sep(),
                     widget.WindowName(fontsize=32),
                     widget.Sep(),
@@ -225,8 +222,7 @@ else:
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(margin_x=1, margin_y=0,
-                                    fontsize=9, disable_drag=True),
+                    widget.GroupBox(margin_x=1, margin_y=0, fontsize=10, disable_drag=True),
                     widget.Sep(),
                     widget.TaskList(fontsize=14,max_title_width=800),
                     widget.Sep(),
@@ -236,13 +232,12 @@ else:
                     widget.Notify(),
                     widget.Clock('%d/%m %H:%M', fontsize=17)
                 ],
-                21,
+                22,
             ),
         ),
         Screen(
             top=bar.Bar([
-                widget.GroupBox(margin_x=1, margin_y=0,
-                                fontsize=9, disable_drag=True),
+                widget.GroupBox(margin_x=1, margin_y=0, fontsize=9, disable_drag=True),
                 widget.TaskList(fontsize=14,max_title_width=800),
             ], 21),
         )
