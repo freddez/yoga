@@ -105,6 +105,12 @@ keys = [
         lazy.spawn("exec dmenu_run "
                    "-fn 'Consolas:size=13' -nb '#000000' -nf '#ffffff' -b")),
 
+    # interact with prompts
+    Key([mod], "r",              lazy.spawncmd()),
+    Key([mod], "g",              lazy.switchgroup()),
+
+
+
     Key([mod], "Left", lazy.prevgroup()),
     Key([mod], "Right", lazy.nextgroup()),
 ]
@@ -186,12 +192,22 @@ for name, key in GROUPS:
 
 THEME_PATH = "/usr/share/icons/gnome/32x32/status"
 
+widget_defaults = dict(
+    font = 'Consolas',
+    fontsize = 18,
+    padding = 3,
+)
+
+
+
 if HOSTNAME.startswith('yoga'):
     screens = [
         Screen(
             top=bar.Bar(
                 [
                     widget.GroupBox(margin_x=1, margin_y=0, fontsize=21, disable_drag=True),
+                    widget.Prompt(**widget_defaults),
+
                     widget.Sep(),
                     widget.WindowName(fontsize=32),
                     widget.Sep(),
