@@ -101,15 +101,10 @@ keys = [
     Key([mod], "c",      lazy.window.kill()),
     Key([mod], "t",      lazy.window.disable_floating()),
     Key([mod, "shift"], "t", lazy.window.enable_floating()),
-    Key([mod], "p",
-        lazy.spawn("exec dmenu_run "
-                   "-fn 'Consolas:size=13' -nb '#000000' -nf '#ffffff' -b")),
 
     # interact with prompts
     Key([mod], "r",              lazy.spawncmd()),
     Key([mod], "g",              lazy.switchgroup()),
-
-
 
     Key([mod], "Left", lazy.prevgroup()),
     Key([mod], "Right", lazy.nextgroup()),
@@ -194,7 +189,7 @@ THEME_PATH = "/usr/share/icons/gnome/32x32/status"
 
 widget_defaults = dict(
     font = 'Consolas',
-    fontsize = 18,
+    fontsize = 16,
     padding = 3,
 )
 
@@ -240,6 +235,7 @@ else:
                 [
                     widget.GroupBox(margin_x=1, margin_y=0, fontsize=10, disable_drag=True),
                     widget.Sep(),
+                    widget.Prompt(**widget_defaults),
                     widget.TaskList(fontsize=14,max_title_width=800),
                     widget.Sep(),
                     widget.CPUGraph(),
