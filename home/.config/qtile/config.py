@@ -92,7 +92,7 @@ keys = [
 
     Key([mod], "o", lazy.to_next_screen()),
 
-    Key([mod], "e",      lazy.spawn("emacs")),
+    Key([mod], "e",      lazy.spawn("/usr/local/bin/emacs")),
     Key([mod], "f",      lazy.spawn("firefox")),
     Key([mod], "g",      lazy.spawn("google-chrome")),
     Key([mod], "Return", lazy.spawn("x-terminal-emulator")),
@@ -139,7 +139,7 @@ border = dict(
 
 layouts = [
     layout.Max(),
-    #layout.Slice('top', 320, wmclass='pino')
+    layout.Slice('top', 320, wmclass='pino'),
     layout.Tile(**border),
     # layout.Stack(**border),
     #layout.Zoomy(),
@@ -188,7 +188,7 @@ for name, key in GROUPS:
 THEME_PATH = "/usr/share/icons/gnome/32x32/status"
 
 widget_defaults = dict(
-    font = 'Consolas',
+    font = 'DejaVu Sans',
     fontsize = 16,
     padding = 3,
 )
@@ -200,7 +200,7 @@ if HOSTNAME.startswith('yoga'):
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(margin_x=1, margin_y=0, fontsize=21, disable_drag=True),
+                    widget.GroupBox(margin_x=1, margin_y=0, font='DejaVu Sans', fontsize=21, disable_drag=True),
                     widget.Prompt(**widget_defaults),
 
                     widget.Sep(),
@@ -223,7 +223,7 @@ if HOSTNAME.startswith('yoga'):
                     widget.Sep(),
                     widget.Notify(),
                     widget.CurrentLayout(),
-                    widget.Clock('%d/%m %H:%M', fontsize=34)
+                    widget.Clock(format='%d/%m %H:%M')
                 ],
                 43,
             ),
@@ -236,13 +236,13 @@ else:
                     widget.GroupBox(margin_x=1, margin_y=0, fontsize=10, disable_drag=True),
                     widget.Sep(),
                     widget.Prompt(**widget_defaults),
-                    widget.TaskList(fontsize=14,max_title_width=800),
+                    widget.TaskList(fontsize=14,max_title_width=400), 
                     widget.Sep(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
                     widget.Sep(),
                     widget.Notify(),
-                    widget.Clock('%d/%m %H:%M', fontsize=17)
+                    widget.Clock(format='%d/%m %H:%M',fontsize=18)
                 ],
                 22,
             ),
