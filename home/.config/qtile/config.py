@@ -73,11 +73,16 @@ keys = [
         lazy.layout.decrease_ratio()),
     Key([mod, "control"], "Right",
         lazy.layout.increase_ratio()),
-
+    # Switch window focus to other pane(s) of stack
+    Key(
+        [mod], "space",
+        lazy.layout.next()
+    ),
+    Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "comma", lazy.layout.increase_nmaster()),
     Key([mod], "semicolon", lazy.layout.decrease_nmaster()),
 
-    Key([mod], "Tab", lazy.group.next_window()),
+    #Key([mod], "Tab", lazy.group.next_window()),
 
     Key([mod], "n", lazy.layout.up()),
 
@@ -90,7 +95,7 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.rotate()),
     Key([mod, "shift"], "space", lazy.layout.toggle_split()),
 
-    Key([mod], "o", lazy.to_next_screen()),
+    Key([mod], "o", lazy.next_screen()),
 
     Key([mod], "e",      lazy.spawn("/usr/local/bin/emacs")),
     Key([mod], "f",      lazy.spawn("firefox")),
