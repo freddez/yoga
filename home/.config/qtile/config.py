@@ -101,7 +101,8 @@ keys = [
     Key([mod], "f",      lazy.spawn("firefox")),
     Key([mod], "g",      lazy.spawn("google-chrome")),
     Key([mod], "Return", lazy.spawn("x-terminal-emulator")),
-    Key([mod], "space",  lazy.nextlayout()),
+    Key([mod], "z",  lazy.nextlayout()),
+    Key([mod, "shift"], "z",  lazy.prevlayout()),
     Key([mod, "control"], "space",  lazy.nextlayout()),
     Key([mod], "c",      lazy.window.kill()),
     Key([mod], "t",      lazy.window.disable_floating()),
@@ -139,14 +140,14 @@ mouse = [
 
 border = dict(
     border_normal='#808080',
-    border_width=1,
+    border_width=0,
 )
 
 layouts = [
     layout.Max(),
-    layout.Slice('top', 320, wmclass='pino'),
-    layout.Tile(**border),
-    # layout.Stack(**border),
+    #layout.Slice('top', 320, wmclass='pino'),
+    #layout.Tile(**border),
+    #layout.Stack(**border),
     #layout.Zoomy(),
 ]
 floating_layout = layout.Floating(**border)
@@ -255,7 +256,7 @@ else:
         Screen(
             top=bar.Bar([
                 widget.GroupBox(margin_x=1, margin_y=0, fontsize=9, disable_drag=True),
-                widget.TaskList(fontsize=14,max_title_width=800),
+                widget.TaskList(fontsize=14),
             ], 21),
         )
     ]
