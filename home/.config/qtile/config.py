@@ -106,7 +106,7 @@ keys = [
     Key([mod, "control"], "space",  lazy.nextlayout()),
     Key([mod], "c",      lazy.window.kill()),
     Key([mod], "t",      lazy.window.disable_floating()),
-    Key([mod, "shift"], "t", lazy.window.enable_floating()),
+    # Key([mod, "shift"], "t", lazy.window.enable_floating()),
 
     # interact with prompts
     Key([mod], "r",              lazy.spawncmd()),
@@ -145,6 +145,7 @@ border = dict(
 
 layouts = [
     layout.Max(),
+    layout.Matrix(),
     #layout.Slice('top', 320, wmclass='pino'),
     #layout.Tile(**border),
     #layout.Stack(**border),
@@ -159,8 +160,8 @@ GROUPS = (
     ('4 Samusocial', 'apostrophe'),
     ('5 Century', 'parenleft'),
     ('6 Pdf', 'minus'),
-    ('7 Ext', 'egrave'),
-    ('8 Divers', 'underscore')
+    ('7', 'egrave'),
+    ('8', 'underscore')
 )
 
 groups = [
@@ -242,12 +243,13 @@ else:
                     widget.GroupBox(margin_x=1, margin_y=0, fontsize=10, disable_drag=True),
                     widget.Sep(),
                     widget.Prompt(**widget_defaults),
-                    widget.TaskList(fontsize=14,max_title_width=400), 
+                    widget.TaskList(fontsize=14,max_title_width=400),
                     widget.Sep(),
                     widget.CPUGraph(),
                     widget.MemoryGraph(),
                     widget.Sep(),
                     widget.Notify(),
+                    widget.Systray(**widget_defaults),
                     widget.Clock(format='%d/%m %H:%M',fontsize=18)
                 ],
                 22,
@@ -256,7 +258,8 @@ else:
         Screen(
             top=bar.Bar([
                 widget.GroupBox(margin_x=1, margin_y=0, fontsize=9, disable_drag=True),
-                widget.TaskList(fontsize=14),
+                #widget.TaskList(fontsize=14),
+                widget.WindowTabs(fontsize=14),
             ], 21),
         )
     ]
