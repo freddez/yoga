@@ -78,7 +78,7 @@ keys = [
         [mod], "space",
         lazy.layout.next()
     ),
-    Key([mod], "Tab", lazy.next_layout()),
+    Key([mod, "shift"], "Tab", lazy.next_layout()),
     Key([mod], "comma", lazy.layout.increase_nmaster()),
     Key([mod], "semicolon", lazy.layout.decrease_nmaster()),
 
@@ -91,7 +91,7 @@ keys = [
     # Key([mod, "control"], "Prior", lazy.layout.shift_up()),
     # Key([mod, "control"], "Next", lazy.layout.shift_down()),
 
-    Key([mod, "shift"], "Tab", lazy.group.prev_window()),
+    Key([mod], "Tab", lazy.group.prev_window()),
     Key([mod, "shift"], "Return", lazy.layout.rotate()),
     Key([mod, "shift"], "space", lazy.layout.toggle_split()),
 
