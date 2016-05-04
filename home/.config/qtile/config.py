@@ -38,7 +38,8 @@ elif HOSTNAME.startswith('paprika'):
         execute_once("feh --bg-scale /home/fredz/Documents/background.jpg")
         execute_once("xsetroot -cursor_name left_ptr")
         execute_once("gnome-settings-daemon")
-
+        execute_once("xbindkeys")
+        execute_once("xmodmap /home/fredz/.xmodmaprc")
 
         
 class Commands(object):
@@ -99,6 +100,7 @@ keys = [
 
     Key([mod], "e",      lazy.spawn("/usr/local/bin/emacs")),
     Key([mod], "f",      lazy.spawn("firefox")),
+    Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "g",      lazy.spawn("google-chrome")),
     Key([mod], "Return", lazy.spawn("x-terminal-emulator")),
     Key([mod], "z",  lazy.nextlayout()),
